@@ -5,6 +5,11 @@ backend:
   squash_merges: true
   cms_label_prefix: redaktion/
 
+app_title: DynaMesh Redaktion
+logo:
+  src: /logo.jpg
+  show_in_header: true
+
 publish_mode: editorial_workflow
 site_url: https://mktcode.github.io/static-website-demo/
 display_url: https://mktcode.github.io/static-website-demo/
