@@ -3,6 +3,7 @@ backend:
   repo: mktcode/static-website-demo
   branch: main
   squash_merges: true
+  cms_label_prefix: redaktion/
 
 publish_mode: editorial_workflow
 site_url: https://mktcode.github.io/static-website-demo/
