@@ -9,20 +9,33 @@ publish_mode: editorial_workflow
 site_url: https://mktcode.github.io/static-website-demo/
 display_url: https://mktcode.github.io/static-website-demo/
 media_folder: content/media
-public_folder: /static-website-demo/content/media
+public_folder: content/media
+
+i18n:
+  structure: multiple_folders
+  locales: [en, de]
+  default_locale: en
+  initial_locales: all
 
 collections:
   - name: pages
     label: Seiten
-    # Existing site content has no front matter. Preserve it exactly as raw Markdown.
-    format: raw
+    label_singular: Seite
+    folder: content/pages
+    create: true
+    # Protect the homepages as well. Deletions can still be reviewed on GitHub.
+    delete: false
+    i18n: true
+    format: yaml-frontmatter
     extension: md
-    files:
-      - name: engineering-principles
-        label: Engineering Principles
-        file: content/engineering-principles.md
-        fields:
-          - name: body
-            label: Inhalt
-            widget: markdown
-            hint: "Die Überschrift gehört zum Markdown-Inhalt. Bilder: content/media/hero.jpg wird im Hero verwendet."
+    slug: "{{slug}}"
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+        i18n: true
+      - name: body
+        label: Inhalt
+        widget: markdown
+        i18n: true
+        hint: "Die Hauptüberschrift wird aus dem Titel erzeugt. Weitere Überschriften im Inhalt ab Ebene 2 verwenden."

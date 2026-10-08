@@ -28,12 +28,14 @@ Für komfortablen GitHub-OAuth-Login ist zusätzlich ein OAuth-Client nötig, z.
 
 ## Redaktion und Veröffentlichung
 
-1. **Seiten → Engineering Principles** öffnen und Markdown bearbeiten.
+1. **Seiten** öffnen, eine vorhandene Seite bearbeiten oder eine neue Seite anlegen. Titel und Markdown-Inhalt pro Sprache (Englisch/Deutsch) eingeben.
 2. Speichern legt einen CMS-Branch und einen Pull Request gegen `main` an; die Live-Website bleibt unverändert.
 3. Entwurf zur Prüfung senden (**In Review**), prüfen und auf **Ready** setzen.
 4. **Publish** merged den Pull Request nach `main`; der vorhandene GitHub-Pages-Workflow baut und veröffentlicht die Website.
 
-Die Datei `content/engineering-principles.md` bleibt Markdown **ohne Front Matter** (`format: raw`). Die HTML-Vorlage und der Website-Build müssen nicht verändert werden. Weitere vorhandene Inhaltsdateien können unter `collections[].files` ergänzt werden.
+Die Folder Collection erlaubt neue Einträge (`create: true`). Übersetzungen liegen in `content/pages/en/<slug>.md` und `content/pages/de/<slug>.md`, jeweils mit YAML Front Matter (`title`) und Markdown-Inhalt. Sveltia verknüpft beide anhand des gleichen Dateinamens. Der Website-Build erzeugt `/en/<slug>/` und `/de/<slug>/`, inklusive Navigation und Sprachwechsel. `index.md` ist die Startseite unter `/en/` bzw. `/de/`; nicht umbenennen. CMS-Löschungen sind deaktiviert, um diese Startseiten zu schützen.
+
+Die alte Datei `content/engineering-principles.md` wird nicht mehr gerendert. Offene PRs für diese Datei müssen geprüft und ihre Änderungen bei Bedarf in die neuen Startseiten übertragen werden. **Zuerst den neuen Website-Build samt Inhaltsdateien deployen, dann das CMS redeployen.**
 
 **Review verbindlich erzwingen:** CMS-Status allein ist keine Berechtigungsgrenze. In GitHub für `main` eine Branch Protection/Ruleset mit Pull-Request-Pflicht und erforderlichen Reviews konfigurieren. Merge-/Squash-Berechtigungen und etwaige Bypass-Rechte prüfen. Squash-Merges müssen im Website-Repository erlaubt sein.
 
@@ -43,7 +45,7 @@ Die Datei `content/engineering-principles.md` bleibt Markdown **ohne Front Matte
 
 Die HTML-Vorlage verwendet fest `content/media/hero.jpg`. Ein anderer Dateiname ändert das Hero-Bild nicht. Die Hero-Bildauswahl ist derzeit kein eigenes CMS-Feld, da sie in `index.html` und nicht in einer Inhaltsdatei liegt. Zum geprüften Austausch kann alternativ ein GitHub-Pull-Request verwendet werden.
 
-`site_url`, `display_url` und `public_folder` zeigen auf die aktuell dokumentierte GitHub-Pages-Website. Bei Wechsel auf `https://dyna-mesh.com` die ersten beiden URLs entsprechend ändern und `public_folder: /content/media` setzen.
+`site_url` und `display_url` zeigen auf die GitHub-Pages-Website. Bei Wechsel auf eine eigene Domain die beiden URLs ändern. `public_folder: content/media` bleibt domainunabhängig: Der Website-Build löst diese CMS-Medienpfade relativ zur jeweiligen Seitentiefe auf.
 
 ## Lokal testen
 
