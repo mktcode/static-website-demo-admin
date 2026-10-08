@@ -34,6 +34,18 @@ collections:
         label: Titel
         widget: string
         i18n: true
+      - name: hero_image
+        label: Hero-Bild
+        widget: image
+        i18n: true
+        required: false
+        hint: "Bild für diese Sprache auswählen oder hochladen. Ohne Auswahl wird das bisherige Standardbild verwendet."
+      - name: hero_alt
+        label: Bildbeschreibung (Alternativtext)
+        widget: string
+        i18n: true
+        required: false
+        hint: "Bild in dieser Sprache beschreiben; enthaltenen Text sinngemäß wiedergeben. Bei einem rein dekorativen Bild leer lassen."
       - name: body
         label: Inhalt
         widget: markdown

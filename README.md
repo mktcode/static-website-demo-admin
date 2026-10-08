@@ -43,7 +43,11 @@ Die alte Datei `content/engineering-principles.md` wird nicht mehr gerendert. Of
 
 `content/media` ist die Medienablage des Website-Repositories. **Die separate Asset Library schreibt direkt nach `main`, unabhängig vom Editorial Workflow.** Für geprüfte Änderungen Medien innerhalb eines Inhaltsentwurfs hochladen. Bei geschütztem `main` ist die separate Asset Library für Benutzer ohne direkten Push-Zugriff schreibgeschützt.
 
-Die HTML-Vorlage verwendet fest `content/media/hero.jpg`. Ein anderer Dateiname ändert das Hero-Bild nicht. Die Hero-Bildauswahl ist derzeit kein eigenes CMS-Feld, da sie in `index.html` und nicht in einer Inhaltsdatei liegt. Zum geprüften Austausch kann alternativ ein GitHub-Pull-Request verwendet werden.
+In jedem Seiteneintrag stehen **Hero-Bild** (`hero_image`) und **Bildbeschreibung (Alternativtext)** (`hero_alt`) zur Verfügung. Beide Felder sind pro Sprache unabhängig editierbar (`i18n: true`). Über das Bildfeld ein vorhandenes Bild auswählen oder ein neues hochladen. Bildauswahl und Upload im Inhaltseditor gehen in den PR der Seite.
+
+Ohne Bildauswahl verwendet die Website weiterhin `content/media/hero.jpg`. Alternativtexte in der jeweiligen Sprache pflegen; bei einem rein dekorativen Bild bewusst leer lassen. Eigene Bilder ohne Beschreibung werden mit leerem Alt-Attribut ausgegeben. Der Website-Build prüft, dass die ausgewählten Dateien in `content/media` existieren, und erzeugt domainunabhängige Bildpfade.
+
+Zuerst den aktualisierten Website-Build deployen, dann das CMS redeployen, damit die neuen Felder auch auf der Website erscheinen.
 
 `site_url` und `display_url` zeigen auf die GitHub-Pages-Website. Bei Wechsel auf eine eigene Domain die beiden URLs ändern. `public_folder: content/media` bleibt domainunabhängig: Der Website-Build löst diese CMS-Medienpfade relativ zur jeweiligen Seitentiefe auf.
 
