@@ -7,7 +7,7 @@ backend:
 
 app_title: DynaMesh Redaktion
 logo:
-  src: /logo.jpg
+  src: /logo.png
   show_in_header: true
 
 publish_mode: editorial_workflow
