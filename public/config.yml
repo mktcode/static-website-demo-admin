@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: mktcode/static-website-demo
+  branch: main
+  squash_merges: true
+
+publish_mode: editorial_workflow
+site_url: https://mktcode.github.io/static-website-demo/
+display_url: https://mktcode.github.io/static-website-demo/
+media_folder: content/media
+public_folder: /static-website-demo/content/media
+
+collections:
+  - name: pages
+    label: Seiten
+    # Existing site content has no front matter. Preserve it exactly as raw Markdown.
+    format: raw
+    extension: md
+    files:
+      - name: engineering-principles
+        label: Engineering Principles
+        file: content/engineering-principles.md
+        fields:
+          - name: body
+            label: Inhalt
+            widget: markdown
+            hint: "Die Überschrift gehört zum Markdown-Inhalt. Bilder: content/media/hero.jpg wird im Hero verwendet."
