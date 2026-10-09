@@ -1,4 +1,4 @@
-# DynaMesh Redaktion
+# Website-Redaktion
 
 Standalone [Sveltia CMS](https://sveltiacms.app/) für `mktcode/static-website-demo`, Zielbranch `main`. Dieses Repository enthält ausschließlich das Redaktionssystem; Inhalte werden im **Website-Repository** gespeichert, nicht hier.
 
@@ -7,14 +7,14 @@ Standalone [Sveltia CMS](https://sveltiacms.app/) für `mktcode/static-website-d
 1. Dateien in `mktcode/static-website-demo-admin` pushen.
 2. In Dokploy eine **Application** anlegen, GitHub-Repository `mktcode/static-website-demo-admin` und dessen Deployment-Branch wählen.
 3. Build Type **Dockerfile**, Dockerfile-Pfad `Dockerfile`, Build Context `.` (Repository-Wurzel).
-4. Domain `admin.dyna-mesh.com` auf **Container-Port 80** konfigurieren; DNS auf den Dokploy-Server richten und HTTPS aktivieren.
+4. Eigene Admin-Domain auf **Container-Port 80** konfigurieren; DNS auf den Dokploy-Server richten und HTTPS aktivieren.
 5. Deploy starten. Keine Volumes, Datenbank oder Umgebungsvariablen erforderlich. CMS und Konfiguration werden im Image ausgeliefert.
 
 Der CMS-Release ist im Dockerfile auf `0.231.0` fixiert und wird beim Build heruntergeladen. Updates bewusst über `SVELTIA_CMS_VERSION` vornehmen und erneut deployen. Die Base-Image-Tags erhalten weiterhin Patch-Updates.
 
 ## GitHub-Anmeldung
 
-Auf `https://admin.dyna-mesh.com/` **Sign In with Token** wählen. Jeder Benutzer benötigt einen eigenen GitHub-Account mit Schreibzugriff auf `mktcode/static-website-demo`.
+Auf der konfigurierten Admin-Domain über **HTTPS** **Sign In with Token** wählen. Jeder Benutzer benötigt einen eigenen GitHub-Account mit Schreibzugriff auf `mktcode/static-website-demo`.
 
 Für einen **fine-grained Personal Access Token** nur das Website-Repository auswählen:
 
@@ -54,8 +54,8 @@ Zuerst den aktualisierten Website-Build deployen, dann das CMS redeployen, damit
 ## Lokal testen
 
 ```sh
-docker build -t dynamesh-admin .
-docker run --rm -p 8080:80 dynamesh-admin
+docker build -t website-admin .
+docker run --rm -p 8080:80 website-admin
 # http://localhost:8080
 ```
 
